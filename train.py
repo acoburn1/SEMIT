@@ -8,6 +8,7 @@ import os
 import sys
 import argparse
 import shutil
+import math
 
 from tensorboardX import SummaryWriter
 
@@ -145,6 +146,8 @@ else:
     eval_content_loader, eval_class_loader = None, None
 
 num_batches_per_epoch = min(len(train_content_loader), len(train_class_loader))
+total_epochs = math.ceil(config['max_iter'] / num_batches_per_epoch)
+print(f"[INFO] Iterations per epoch: {num_batches_per_epoch} | Max iterations: {config['max_iter']} | Total epochs (estimated): {total_epochs}")
 
 # Setup logger and output folders
 model_name = os.path.splitext(os.path.basename(opts.config))[0]

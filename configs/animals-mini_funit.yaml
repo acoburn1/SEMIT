@@ -2,10 +2,12 @@
 # Licensed under the CC BY-NC-SA 4.0 license
 # (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 
+model: funit
+
 # logger options
 image_save_iter: 1000000         # How often do you want to save output images during training
-image_display_iter: 1000000 # How often do you want to display output images during training
-snapshot_save_iter: 5000000      # How often do you want to save trained models
+image_display_iter: 1000000       # How often do you want to display output images during training
+snapshot_save_iter: 1000000      # How often do you want to save trained models
 log_iter: 1                   # How often do you want to log the training stats
 
 # optimization options
@@ -34,14 +36,13 @@ dis:
 
 # data options
 num_workers: 4
-batch_size: 8
+batch_size: 8 
 new_size: 130                 # first resize the shortest image side to this size
 crop_image_height: 128        # random crop image of this height
 crop_image_width: 128         # random crop image of this width
 
-k_shot: 1
 
-data_folder_train:  ./datasets/animals-mini-uncropped/test
-data_list_train: ./datasets/animals-mini-uncropped/animals-mini_list_test.txt
-data_folder_test: ./datasets/animals-mini-uncropped/unseen-target
-data_list_test: ./datasets/animals-mini-uncropped/animals-mini_list_unseen-target.txt
+data_folder_train:  ./datasets/animals-mini-uncropped/train
+data_list_train: ./datasets/animals-mini-uncropped/animals-mini_list_train.txt
+data_folder_test: ./datasets/animals-mini-uncropped/test
+data_list_test: ./datasets/animals-mini-uncropped/animals-mini_list_test.txt

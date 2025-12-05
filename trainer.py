@@ -13,6 +13,7 @@ import torch.nn.init as init
 from torch.optim import lr_scheduler
 
 from SEMIT_model import SEMIT
+from funit_model import SMIT
 import pdb
 
 
@@ -28,7 +29,13 @@ def update_average(model_tgt, model_src, beta=0.999):
 class Trainer(nn.Module):
     def __init__(self, cfg):
         super(Trainer, self).__init__()
-        self.model = SEMIT(cfg)
+        model_name = cfg.get('model', 'semit').lower()
+        if model_name == 'funit':
+            print("[Trainer] Using FUNIT (SMIT) model")
+            self.model = SMIT(cfg)
+        else:
+            print("[Trainer] Using SEMIT model")
+            self.model = SEMIT(cfg)
         lr_gen = cfg['lr_gen']
         lr_dis = cfg['lr_dis']
         dis_params = list(self.model.dis.parameters())
